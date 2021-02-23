@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnviarTokenInterceptor } from './auth/enviar-token.interceptor';
 import { HomeComponent } from './componentes/home/home.component';
+import { PartiturasComponent } from './componentes/partituras/partituras.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './componentes/home/home.component';
     NavegacionComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    PartiturasComponent
   ],
   imports: [
     BrowserModule,
