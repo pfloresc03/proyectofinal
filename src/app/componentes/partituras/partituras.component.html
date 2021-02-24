@@ -6,12 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <form (ngSubmit)="subirPartitura()">
-        <input type="text" [(ngModel)] = "partitura.nombre" placeholder="nombre"><br>
-        <input type="file" [(ngModel)] = "partitura.archivo"><br>
-        <input type="text" [(ngModel)] = "partitura.id_instrumento"><br>  
-        <button class="btn btn-success" type="submit">Subir partitura</button>
-    </form>
+    <ul>
+        <li *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>{{partitura.nombre}}</a></li>
+    </ul>
+
+    <input type="file" (change)='tengoArchivo($event)'><br>
+    <button class="btn btn-success" type="button" (click)="subirArchivo()">Subir Partitura</button>
 </body>
 </html>

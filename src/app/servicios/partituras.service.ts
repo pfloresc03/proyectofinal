@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Partitura } from '../clases/partitura';
 
-const url = 'http://localhost/backendfinal/partituras/'
+const url = 'http://localhost/backendfinal/archivos/'
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class PartiturasService {
 
   constructor(private http:HttpClient) { }
 
-  leerPartituras(): Observable<any>{
+  verPartituras(): Observable<any>{
     return this.http.get(url)
   }
   
@@ -33,5 +33,9 @@ export class PartiturasService {
 
   buscarPartituras(entrada:string): Observable<any>{
     return this.http.get(url+'?busqueda='+entrada)
+  }
+
+  subirPartitura(entrada): Observable<any>{
+    return this.http.post(url,entrada)
   }
 }
