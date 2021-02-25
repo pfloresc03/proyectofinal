@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnviarTokenInterceptor } from './auth/enviar-token.interceptor';
 import { HomeComponent } from './componentes/home/home.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
+import { DirectorComponent } from './componentes/director/director.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PartiturasComponent } from './componentes/partituras/partituras.compone
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PartiturasComponent
+    PartiturasComponent,
+    DirectorComponent
   ],
   imports: [
     BrowserModule,

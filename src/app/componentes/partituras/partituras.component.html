@@ -6,11 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <ul>
-        <li *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>{{partitura.nombre}}</a></li>
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <ul>
+                    <li *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>
+                        <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a></li>
+                </ul>
+            </div>
+            <div class="col-4">  
+                <input type="file" (change)='tengoArchivo($event)'><br>
+                <button class="btn btn-success" type="button" (click)="subirArchivo()">Subir Partitura</button>
+            </div>
 
-    <input type="file" (change)='tengoArchivo($event)'><br>
-    <button class="btn btn-success" type="button" (click)="subirArchivo()">Subir Partitura</button>
+        </div>
+    </div>
+    
+    
+
 </body>
 </html>
