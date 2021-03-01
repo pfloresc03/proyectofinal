@@ -14,6 +14,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
 import { DirectorComponent } from './componentes/director/director.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
+import { GalardonesComponent } from './componentes/galardones/galardones.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ObrasComponent } from './componentes/obras/obras.component';
     HomeComponent,
     PartiturasComponent,
     DirectorComponent,
-    ObrasComponent
+    ObrasComponent,
+    GalardonesComponent
   ],
   imports: [
     BrowserModule,
