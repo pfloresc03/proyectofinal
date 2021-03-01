@@ -1,6 +1,7 @@
 import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Partitura } from 'src/app/clases/partitura';
 import { PartiturasService } from 'src/app/servicios/partituras.service';
 
@@ -11,16 +12,19 @@ import { PartiturasService } from 'src/app/servicios/partituras.service';
 })
 
 export class PartiturasComponent implements OnInit {
+  partitura: Partitura = new Partitura
   archivo: File
   partituras: Partitura[]=[]
-  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService) { }
+  id_obra: number = 0
+  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, private rutaActiva:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id_obra = this.rutaActiva.snapshot.params.id_obra
     this.obtenerPartituras()
   }
 
   obtenerPartituras(): void{
-    this.servicioPartitura.verPartituras().subscribe(
+    this.servicioPartitura.verPartituras(this.id_obra).subscribe(
       respuesta => {
         console.log(respuesta)
         this.partituras = respuesta
@@ -42,9 +46,10 @@ export class PartiturasComponent implements OnInit {
   subirArchivo(): void{
     const formData = new FormData()
     formData.append('partitura', this.archivo)
-    this.servicioPartitura.subirPartitura(formData).subscribe(
+    this.servicioPartitura.subirPartitura(formData, this.id_obra).subscribe(
       respuesta => {
         console.log(respuesta)
+        this.obtenerPartituras()
       },
       error => {
         console.log(error)
@@ -52,4 +57,5 @@ export class PartiturasComponent implements OnInit {
       }
     )
   }
+
 }

@@ -13,6 +13,7 @@ import { EnviarTokenInterceptor } from './auth/enviar-token.interceptor';
 import { HomeComponent } from './componentes/home/home.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
 import { DirectorComponent } from './componentes/director/director.component';
+import { ObrasComponent } from './componentes/obras/obras.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DirectorComponent } from './componentes/director/director.component';
     RegisterComponent,
     HomeComponent,
     PartiturasComponent,
-    DirectorComponent
+    DirectorComponent,
+    ObrasComponent
   ],
   imports: [
     BrowserModule,

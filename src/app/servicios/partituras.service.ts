@@ -11,16 +11,16 @@ export class PartiturasService {
 
   constructor(private http:HttpClient) { }
 
-  verPartituras(): Observable<any>{
-    return this.http.get(url)
+  verPartituras(id_obra:number): Observable<any>{
+    return this.http.get(url+id_obra)
   }
   
   insertarPartitura(partitura:Partitura): Observable<any>{
     return this.http.post(url, partitura)
   }
 
-  leerPartitura(id:number): Observable<any>{
-    return this.http.get(url+id)
+  leerPartitura(id_obra:number): Observable<any>{
+    return this.http.get(url+id_obra)
   }
 
   editarPartitura(partitura:Partitura): Observable<any>{
@@ -35,7 +35,7 @@ export class PartiturasService {
     return this.http.get(url+'?busqueda='+entrada)
   }
 
-  subirPartitura(entrada): Observable<any>{
-    return this.http.post(url,entrada)
+  subirPartitura(entrada, id_obra:number): Observable<any>{
+    return this.http.post(url + id_obra, entrada)
   }
 }
