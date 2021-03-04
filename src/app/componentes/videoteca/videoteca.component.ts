@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Videoteca } from 'src/app/clases/videoteca';
+import { UserService } from 'src/app/servicios/user.service';
 import { VideotecaService } from 'src/app/servicios/videoteca.service';
-import { Url } from 'url';
 
 @Component({
   selector: 'app-videoteca',
@@ -13,10 +12,14 @@ export class VideotecaComponent implements OnInit {
   videoteca: Videoteca[]=[]
   videoNuevo: Videoteca = new Videoteca
 
-  constructor(private servicioVideoteca:VideotecaService, private sanitizer:DomSanitizer) { }
+  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
 
   ngOnInit(): void {
     this.obtenerVideoteca()
+  }
+
+  fnLogged(): boolean {
+    return this.servicioUsuario.isLogged()
   }
 
   obtenerVideoteca(): void{
@@ -46,6 +49,16 @@ export class VideotecaComponent implements OnInit {
         console.log(error)
         console.log(error.error.error)
       }
+    )
+  }
+
+  eliminarVideo(id): void{
+    this.servicioVideoteca.borrarVideo(id).subscribe(
+      respuesta => {
+        console.log(respuesta)
+        this.obtenerVideoteca()
+      },
+      error => console.log(error)
     )
   }
 }

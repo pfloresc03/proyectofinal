@@ -1,0 +1,6 @@
+#videos{
+    display: inline; 
+}
+#borrar{
+    align-self:flex-end;
+}

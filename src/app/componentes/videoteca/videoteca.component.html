@@ -10,17 +10,38 @@
         <br>
 
                 <h1>Videoteca</h1>
-                <ul>
-                    <li *ngFor="let video of videoteca">
-                        <iframe width="560" height="315" [src]="video.enlace" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </li>
-                </ul>
-                <h4>Subir Video</h4>
-                <div class="input-group">
-                    <input class="form-control" type="text" [(ngModel)]="videoNuevo.titulo" placeholder="Titulo">
-                    <input class="form-control" type="text" [(ngModel)]="videoNuevo.enlace" placeholder="Enlace">
-                    <button class="btn btn-primary" type="button" (click)="insertarVideo()">Subir Video</button>
+                <table>
+                    <thead>
+                        <div *ngFor="let video of videoteca" id="videos">
+                            <th width="250">
+                                <tr>
+                                    <td>{{video.titulo}}</td>
+                                    <td><i *ngIf="fnLogged()" class="fas fa-minus-circle" (click)="borrarVideo(video.id)">Borrar</i></td>
+                                </tr>
+                                 
+                            </th>
+                            
+                        </div>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <div *ngFor="let video of videoteca" id="videos">
+                                <td><iframe width="250" height="165" [src]="video.enlace | safe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>{{video.titulo}}</iframe> 
+                                </td>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div *ngIf="fnLogged()">
+                    <h4>Subir Video</h4>
+                    <div class="input-group">
+                        <input class="form-control" type="text" [(ngModel)]="videoNuevo.titulo" placeholder="Titulo">
+                        <input class="form-control" type="text" [(ngModel)]="videoNuevo.enlace" placeholder="Enlace">
+                        <button class="btn btn-primary" type="button" (click)="insertarVideo()">Subir Video</button>
+                    </div>
                 </div>
+                
 
     </div>
 </body>

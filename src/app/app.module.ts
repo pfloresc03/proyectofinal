@@ -16,6 +16,7 @@ import { DirectorComponent } from './componentes/director/director.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
 import { GalardonesComponent } from './componentes/galardones/galardones.component';
 import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VideotecaComponent } from './componentes/videoteca/videoteca.component'
     DirectorComponent,
     ObrasComponent,
     GalardonesComponent,
-    VideotecaComponent
+    VideotecaComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
