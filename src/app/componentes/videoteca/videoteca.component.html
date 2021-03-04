@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+
+                <h1>Videoteca</h1>
+                <ul>
+                    <li *ngFor="let video of videoteca">
+                        <iframe width="560" height="315" [src]="video.enlace" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                </ul>
+                <h4>Subir Video</h4>
+                <div class="input-group">
+                    <input class="form-control" type="text" [(ngModel)]="videoNuevo.titulo" placeholder="Titulo">
+                    <input class="form-control" type="text" [(ngModel)]="videoNuevo.enlace" placeholder="Enlace">
+                    <button class="btn btn-primary" type="button" (click)="insertarVideo()">Subir Video</button>
+                </div>
+
+    </div>
+</body>
+</html>

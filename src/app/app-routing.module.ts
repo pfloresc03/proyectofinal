@@ -7,6 +7,7 @@ import { GalardonesComponent } from './componentes/galardones/galardones.compone
 import { HomeComponent } from './componentes/home/home.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
+import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
 
 const routes: Routes = [
   {path: "login", component:LoginComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "director", component:DirectorComponent},
   {path: "obras", component:ObrasComponent},
   {path: "galardones", component:GalardonesComponent},
+  {path: "videoteca", component:VideotecaComponent},
 
   {path: "**", component:HomeComponent}
 ];

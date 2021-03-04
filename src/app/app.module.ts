@@ -15,6 +15,7 @@ import { PartiturasComponent } from './componentes/partituras/partituras.compone
 import { DirectorComponent } from './componentes/director/director.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
 import { GalardonesComponent } from './componentes/galardones/galardones.component';
+import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GalardonesComponent } from './componentes/galardones/galardones.compone
     PartiturasComponent,
     DirectorComponent,
     ObrasComponent,
-    GalardonesComponent
+    GalardonesComponent,
+    VideotecaComponent
   ],
   imports: [
     BrowserModule,
