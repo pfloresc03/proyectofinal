@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Videoteca } from 'src/app/clases/videoteca';
 import { UserService } from 'src/app/servicios/user.service';
 import { VideotecaService } from 'src/app/servicios/videoteca.service';
@@ -10,8 +11,12 @@ import { VideotecaService } from 'src/app/servicios/videoteca.service';
 })
 export class VideotecaComponent implements OnInit {
   videoteca: Videoteca[]=[]
-  videoNuevo: Videoteca = new Videoteca
-
+  mostrarEditar: boolean = false
+  formNuevo: FormGroup = new FormGroup({
+    id: new FormControl(),
+    titulo: new FormControl('',[Validators.required]),
+    enlace: new FormControl('',[Validators.required])
+  })
   constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
 
   ngOnInit(): void {
@@ -38,12 +43,13 @@ export class VideotecaComponent implements OnInit {
   }
 
   insertarVideo(): void{
-    this.videoNuevo.enlace = this.videoNuevo.enlace.substring(this.videoNuevo.enlace.lastIndexOf("/"))
-    this.videoNuevo.enlace = "https://www.youtube.com/embed"+this.videoNuevo.enlace
-    this.servicioVideoteca.insertarVideo(this.videoNuevo).subscribe(
+    this.formNuevo.value.enlace = this.formNuevo.value.enlace.substring(this.formNuevo.value.enlace.lastIndexOf("/"))
+    this.formNuevo.value.enlace = "https://www.youtube.com/embed"+this.formNuevo.value.enlace
+    this.servicioVideoteca.insertarVideo(this.formNuevo.value).subscribe(
       respuesta => {
         console.log(respuesta)
         this.obtenerVideoteca()
+        this.formNuevo.reset()
       },
       error => {
         console.log(error)
@@ -59,6 +65,22 @@ export class VideotecaComponent implements OnInit {
         this.obtenerVideoteca()
       },
       error => console.log(error)
+    )
+  }
+
+  editarVideo(): void {
+    this.formNuevo.value.enlace = this.formNuevo.value.enlace.substring(this.formNuevo.value.enlace.lastIndexOf("/"))
+    this.formNuevo.value.enlace = "https://www.youtube.com/embed"+this.formNuevo.value.enlace
+    this.servicioVideoteca.editarVideo(this.formNuevo.value).subscribe(
+      respuesta =>{
+        console.log(respuesta)
+        this.obtenerVideoteca()
+        this.formNuevo.reset()
+      },
+      error =>{
+        console.log(error)
+      }
+
     )
   }
 }

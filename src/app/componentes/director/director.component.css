@@ -8,3 +8,16 @@ p{
     font-size: large;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+#img{
+    margin:10px auto;
+    padding:13px;
+    width:220px;
+    height:220px;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+#img img{
+    width: 100%;
+}

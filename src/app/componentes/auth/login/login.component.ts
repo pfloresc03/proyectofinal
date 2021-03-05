@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         console.log(respuesta)
         this.servicioUsuario.guardarToken(respuesta)
         this.mensaje = respuesta
-        this.irHacia.navigate(['/partituras'])
+        this.irHacia.navigate(['/obras'])
       },
       error =>{
         console.log(error)

@@ -22,4 +22,8 @@ export class VideotecaService {
   borrarVideo(id:number): Observable<any>{
     return this.http.delete(url+id)
   }
+
+  editarVideo(video:Videoteca): Observable<any>{
+    return this.http.put(url,video)
+  }
 }
