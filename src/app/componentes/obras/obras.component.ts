@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { obra } from 'src/app/clases/obra';
 import { ObrasService } from 'src/app/servicios/obras.service';
+import { UserService } from 'src/app/servicios/user.service';
 
 @Component({
   selector: 'app-obras',
@@ -11,10 +13,19 @@ import { ObrasService } from 'src/app/servicios/obras.service';
 export class ObrasComponent implements OnInit {
   obra: obra = new obra
   obras: obra[]=[]
-  constructor(private servicioObras:ObrasService, private irHacia:Router) { }
+  formNuevo: FormGroup = new FormGroup({
+    id: new FormControl(),
+    nombre: new FormControl('',[Validators.required]),
+    autor: new FormControl('',[Validators.required])
+  })
+  constructor(private servicioObras:ObrasService, private irHacia:Router, private servicioUsuario:UserService) { }
 
   ngOnInit(): void {
     this.obtenerObras()
+  }
+
+  fnLogged(): boolean {
+    return this.servicioUsuario.isLogged()
   }
 
   obtenerObras(): void{
@@ -32,10 +43,11 @@ export class ObrasComponent implements OnInit {
   }
 
   crearObra(): void{
-    this.servicioObras.insertarObra(this.obra).subscribe(
+    this.servicioObras.insertarObra(this.formNuevo.value).subscribe(
       respuesta => {
         console.log(respuesta)
         this.obtenerObras()
+        this.formNuevo.reset()
       },
       error => {
         console.log(error)
@@ -44,5 +56,32 @@ export class ObrasComponent implements OnInit {
     )
   }
 
+  eliminarObra(id:number): void {
+    if (confirm('Está seguro de eliminar la obra?')==true){
+      
+      this.servicioObras.borrarObra(id).subscribe(
+        respuesta => {
+          console.log(respuesta)
+          this.obtenerObras()
+          alert('La obra ha sido eliminada correctamente!!!');
+        },
+        error => console.log(error)
+      )
+    } 
+  }
+
+  editarObra(): void{
+    this.servicioObras.editarObra(this.formNuevo.value).subscribe(
+      respuesta => {
+        console.log(respuesta)
+        this.obtenerObras()
+        this.formNuevo.reset()
+      },
+      error => {
+        console.log(error)
+        console.log(error.error.error)
+      }
+    )
+  }
   
 }

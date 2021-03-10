@@ -22,4 +22,8 @@ export class ObrasService {
   borrarObra(id:number): Observable<any>{
     return this.http.delete(url+id)
   }
+
+  editarObra(obra:obra): Observable<any>{
+    return this.http.put(url,obra)
+  }
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UserRouterGuard } from './auth/user-router.guard';
 import { LoginComponent } from './componentes/auth/login/login.component';
+import { PerfilComponent } from './componentes/auth/perfil/perfil.component';
 import { RegisterComponent } from './componentes/auth/register/register.component';
 import { DirectorComponent } from './componentes/director/director.component';
 import { GalardonesComponent } from './componentes/galardones/galardones.component';
@@ -13,12 +15,12 @@ const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "registro", component:RegisterComponent},
   {path: "home", component:HomeComponent},
-  {path: "partituras", component:PartiturasComponent},
-  {path: "partituras/:id_obra", component:PartiturasComponent},
+  {path: "partituras/:id_obra", component:PartiturasComponent, canActivate:[UserRouterGuard]},
   {path: "director", component:DirectorComponent},
-  {path: "obras", component:ObrasComponent},
+  {path: "obras", component:ObrasComponent, canActivate:[UserRouterGuard]},
   {path: "galardones", component:GalardonesComponent},
   {path: "videoteca", component:VideotecaComponent},
+  {path: "perfil", component:PerfilComponent, canActivate:[UserRouterGuard]},
 
   {path: "**", component:HomeComponent}
 ];

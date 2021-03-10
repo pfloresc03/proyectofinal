@@ -58,4 +58,18 @@ export class PartiturasComponent implements OnInit {
     )
   }
 
+  eliminarPartitura(id:number): void{
+    if (confirm('Está seguro de eliminar la partitura?')==true){
+      
+      this.servicioPartitura.borrarPartitura(id).subscribe(
+        respuesta => {
+          console.log(respuesta)
+          this.obtenerPartituras()
+          alert('La partitura ha sido eliminada correctamente!!!');
+        },
+        error => console.log(error)
+      )
+    } 
+  }
+
 }

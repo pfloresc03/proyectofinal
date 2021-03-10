@@ -13,7 +13,9 @@
                 <h1>Partituras</h1>
                 <ul>
                     <li *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>
-                        <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a></li>
+                        <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a> &nbsp;
+                        <i class="fas fa-minus-circle" (click)="eliminarPartitura(partitura.id)">Borrar</i>
+                    </li>
                 </ul>
             </div>
             <div class="col-6">  

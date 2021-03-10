@@ -13,17 +13,26 @@
                 <h1>Listado de Obras</h1>
                 <ul>
                     <li *ngFor="let obra of obras">
-                        <a [routerLink]="['/partituras',obra.id]">{{obra.nombre}}</a>
-        
+                        <p><a [routerLink]="['/partituras',obra.id]">{{obra.nombre}} ({{obra.autor}})</a> &nbsp;
+                            <i *ngIf="fnLogged()" class="fas fa-edit" (click)="obra.id ? formNuevo.patchValue(obra):formNuevo.reset()">Editar</i> &nbsp;
+                            <i *ngIf="fnLogged()" class="fas fa-minus-circle" (click)="eliminarObra(obra.id)">Borrar</i></p>
+                        
                     </li>
                 </ul>
             </div>
             <div class="col-6">
                 <h4>Añadir obra</h4>
-                <div class="input-group">
-                    <input class="form-control" type="text" [(ngModel)] = "obra.nombre" placeholder="Titulo de la Obra">
-                    <button class="btn btn-primary" (click)="crearObra()">Crear obra</button>
-                </div>
+                <form [formGroup]='formNuevo' (ngSubmit)='crearObra()'>
+                    <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+                    <input class="form-control" type="text" placeholder="Autor" formControlName="autor">
+                    <button type="submit" *ngIf="!formNuevo.value.id; else editar" [disabled]="formNuevo.invalid" class="btn btn-primary">Crear obra</button>
+                    
+                    <ng-template #editar>
+                        <button type="button" class="btn btn-warning" (click)='editarObra()' [disabled]="formNuevo.invalid">Editar video</button>
+                        <button type="button" class="btn btn-dark" (click)='formNuevo.reset()'>Cancelar</button>
+                    </ng-template>
+                </form>
+
                 
             </div>
         </div>

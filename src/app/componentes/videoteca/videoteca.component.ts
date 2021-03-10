@@ -59,13 +59,17 @@ export class VideotecaComponent implements OnInit {
   }
 
   eliminarVideo(id): void{
-    this.servicioVideoteca.borrarVideo(id).subscribe(
-      respuesta => {
-        console.log(respuesta)
-        this.obtenerVideoteca()
-      },
-      error => console.log(error)
-    )
+    if (confirm('Está seguro de eliminar el video?')==true){
+      
+      this.servicioVideoteca.borrarVideo(id).subscribe(
+        respuesta => {
+          console.log(respuesta)
+          this.obtenerVideoteca()
+          alert('El video ha sido eliminado correctamente!!!');
+        },
+        error => console.log(error)
+      )
+    } 
   }
 
   editarVideo(): void {
