@@ -19,7 +19,7 @@
                     <td width="250">
                         <p>{{video.titulo}} ({{video.autor}})</p>
                         <p><i *ngIf="fnLogged()" class="fas fa-minus-circle" (click)="eliminarVideo(video.id)">Borrar</i></p>
-                        <p><i *ngIf="fnLogged()" class="fas fa-edit" (click)="video.id ? formNuevo.patchValue(video):formNuevo.reset()">Editar</i></p>
+                        <p><i *ngIf="fnLogged()" class="fas fa-edit" (click)="video.id ? formEdit.patchValue(video):formEdit.reset()" data-toggle="modal" data-target="#modal">Editar</i></p>
                     </td>
                                  
                 </tbody>
@@ -49,7 +49,33 @@
             </div>
         </div>
     </div>
-                
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Video</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]='formEdit'>
+                <input class="form-control" type="text" placeholder="Titulo" formControlName="titulo">
+                <input class="form-control" type="text" placeholder="Autor" formControlName="autor">
+                <input class="form-control" type="text" placeholder="Enlace" formControlName="enlace">
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-warning" (click)='editarVideo()' [disabled]="formEdit.invalid">Editar video</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal" (click)='formEdit.reset()'>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     
 </body>

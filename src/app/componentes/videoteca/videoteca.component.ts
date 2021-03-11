@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ModalManager } from 'ngb-modal';
 import { Videoteca } from 'src/app/clases/videoteca';
 import { UserService } from 'src/app/servicios/user.service';
 import { VideotecaService } from 'src/app/servicios/videoteca.service';
@@ -18,10 +20,18 @@ export class VideotecaComponent implements OnInit {
     autor: new FormControl(''),
     enlace: new FormControl('',[Validators.required])
   })
-  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
+  formEdit: FormGroup = new FormGroup({
+    id: new FormControl(),
+    titulo: new FormControl('',[Validators.required]),
+    autor: new FormControl(''),
+    enlace: new FormControl('',[Validators.required])
+  })
+  
+  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService, private modal:ModalManager) { }
 
   ngOnInit(): void {
     this.obtenerVideoteca()
+    
   }
 
   fnLogged(): boolean {
@@ -77,16 +87,16 @@ export class VideotecaComponent implements OnInit {
   }
 
   editarVideo(): void {
-    if (this.formNuevo.value.autor == ""){
-      this.formNuevo.value.autor = "Anónimo"
+    if (this.formEdit.value.autor == ""){
+      this.formEdit.value.autor = "Anónimo"
     }
-    this.formNuevo.value.enlace = this.formNuevo.value.enlace.substring(this.formNuevo.value.enlace.lastIndexOf("/"))
-    this.formNuevo.value.enlace = "https://www.youtube.com/embed"+this.formNuevo.value.enlace
-    this.servicioVideoteca.editarVideo(this.formNuevo.value).subscribe(
+    this.formEdit.value.enlace = this.formEdit.value.enlace.substring(this.formEdit.value.enlace.lastIndexOf("/"))
+    this.formEdit.value.enlace = "https://www.youtube.com/embed"+this.formEdit.value.enlace
+    this.servicioVideoteca.editarVideo(this.formEdit.value).subscribe(
       respuesta =>{
         console.log(respuesta)
         this.obtenerVideoteca()
-        this.formNuevo.reset()
+        this.modal.close
       },
       error =>{
         console.log(error)
