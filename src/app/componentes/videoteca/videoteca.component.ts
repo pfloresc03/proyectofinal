@@ -15,6 +15,7 @@ export class VideotecaComponent implements OnInit {
   formNuevo: FormGroup = new FormGroup({
     id: new FormControl(),
     titulo: new FormControl('',[Validators.required]),
+    autor: new FormControl(''),
     enlace: new FormControl('',[Validators.required])
   })
   constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
@@ -43,6 +44,9 @@ export class VideotecaComponent implements OnInit {
   }
 
   insertarVideo(): void{
+    if (this.formNuevo.value.autor == ""){
+      this.formNuevo.value.autor = "Anónimo"
+    }
     this.formNuevo.value.enlace = this.formNuevo.value.enlace.substring(this.formNuevo.value.enlace.lastIndexOf("/"))
     this.formNuevo.value.enlace = "https://www.youtube.com/embed"+this.formNuevo.value.enlace
     this.servicioVideoteca.insertarVideo(this.formNuevo.value).subscribe(
@@ -73,6 +77,9 @@ export class VideotecaComponent implements OnInit {
   }
 
   editarVideo(): void {
+    if (this.formNuevo.value.autor == ""){
+      this.formNuevo.value.autor = "Anónimo"
+    }
     this.formNuevo.value.enlace = this.formNuevo.value.enlace.substring(this.formNuevo.value.enlace.lastIndexOf("/"))
     this.formNuevo.value.enlace = "https://www.youtube.com/embed"+this.formNuevo.value.enlace
     this.servicioVideoteca.editarVideo(this.formNuevo.value).subscribe(

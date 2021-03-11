@@ -2,11 +2,20 @@
     display: inline; 
 }
 
-h1{
+h1, .card-header{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: italic;
 }
 
 td{
     align-items: center;
+}
+
+p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.card{
+    width: 85%;
+    margin: 0 auto;
 }

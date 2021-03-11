@@ -16,7 +16,7 @@ export class ObrasComponent implements OnInit {
   formNuevo: FormGroup = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl('',[Validators.required]),
-    autor: new FormControl('',[Validators.required])
+    autor: new FormControl('')
   })
   constructor(private servicioObras:ObrasService, private irHacia:Router, private servicioUsuario:UserService) { }
 
@@ -43,6 +43,9 @@ export class ObrasComponent implements OnInit {
   }
 
   crearObra(): void{
+    if (this.formNuevo.value.autor == ""){
+      this.formNuevo.value.autor = "Anónimo"
+    }
     this.servicioObras.insertarObra(this.formNuevo.value).subscribe(
       respuesta => {
         console.log(respuesta)
@@ -71,6 +74,9 @@ export class ObrasComponent implements OnInit {
   }
 
   editarObra(): void{
+    if (this.formNuevo.value.autor == ""){
+      this.formNuevo.value.autor = "Anónimo"
+    }
     this.servicioObras.editarObra(this.formNuevo.value).subscribe(
       respuesta => {
         console.log(respuesta)

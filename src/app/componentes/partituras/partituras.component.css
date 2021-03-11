@@ -1,8 +1,8 @@
-h1, h4{
+.card-header{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: italic;
 }
-ul{
+dl{
     font-size: large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
