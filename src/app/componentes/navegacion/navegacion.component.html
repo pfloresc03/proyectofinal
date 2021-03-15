@@ -6,7 +6,7 @@
   
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/home">Historia
             <span class="sr-only">(current)</span>
           </a>
@@ -22,14 +22,17 @@
         </li>
         <li class="nav-item" *ngIf="fnLogged()">
           <a class="nav-link" routerLink="/obras">Partituras <i class="fa fa-file-pdf" aria-hidden="true"></i></a>
-      </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mapa">Donde estamos <i class="fas fa-map-marker-alt"></i></a>
+        </li>
       </ul>
       <ul class="navbar-nav mt-2 mt-lg-0">
         <ng-template [ngIf]='!fnLogged()' [ngIfElse]='salir'>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/registro">Registro <i class="fa fa-user-circle" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" routerLink="/login">Login <i class="fa fa-sign-in-alt" aria-hidden="true"></i></a>
             </li>
         </ng-template>

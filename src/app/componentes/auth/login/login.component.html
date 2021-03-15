@@ -22,7 +22,8 @@
                     
                     <button type="submit" class="btn btn-primary" [disabled]="!formLogin.valid">Login</button>
                 </form>
-                
+                <hr>
+                <p>No tienes cuenta? <a href="/registro">Registrate</a></p>
                 <div class="alert alert-danger" role="alert" *ngIf="mensaje">
                     <strong>{{mensaje}}</strong>
                 </div>

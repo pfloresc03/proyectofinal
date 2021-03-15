@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Partitura } from 'src/app/clases/partitura';
+import { AdminService } from 'src/app/servicios/admin.service';
 import { PartiturasService } from 'src/app/servicios/partituras.service';
+import { UserService } from 'src/app/servicios/user.service';
 
 @Component({
   selector: 'app-partituras',
@@ -16,11 +18,16 @@ export class PartiturasComponent implements OnInit {
   archivo: File
   partituras: Partitura[]=[]
   id_obra: number = 0
-  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, private rutaActiva:ActivatedRoute) { }
+  fnAdmin = this.servicioAdmin.isAdmin
+  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, private servicioUsuario:UserService, private rutaActiva:ActivatedRoute, private servicioAdmin:AdminService) { }
 
   ngOnInit(): void {
     this.id_obra = this.rutaActiva.snapshot.params.id_obra
     this.obtenerPartituras()
+  }
+
+  fnLogged(): boolean {
+    return this.servicioUsuario.isLogged()
   }
 
   obtenerPartituras(): void{

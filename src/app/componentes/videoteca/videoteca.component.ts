@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Videoteca } from 'src/app/clases/videoteca';
+import { AdminService } from 'src/app/servicios/admin.service';
 import { UserService } from 'src/app/servicios/user.service';
 import { VideotecaService } from 'src/app/servicios/videoteca.service';
 
@@ -12,7 +13,6 @@ import { VideotecaService } from 'src/app/servicios/videoteca.service';
 })
 export class VideotecaComponent implements OnInit {
   videoteca: Videoteca[]=[]
-  mostrarEditar: boolean = false
   formNuevo: FormGroup = new FormGroup({
     id: new FormControl(),
     titulo: new FormControl('',[Validators.required]),
@@ -25,7 +25,9 @@ export class VideotecaComponent implements OnInit {
     autor: new FormControl(''),
     enlace: new FormControl('',[Validators.required])
   })
-  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
+  fnAdmin = this.servicioAdmin.isAdmin
+
+  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService, private servicioAdmin:AdminService) { }
 
   ngOnInit(): void {
     this.obtenerVideoteca()

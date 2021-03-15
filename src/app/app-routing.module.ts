@@ -7,6 +7,7 @@ import { RegisterComponent } from './componentes/auth/register/register.componen
 import { DirectorComponent } from './componentes/director/director.component';
 import { GalardonesComponent } from './componentes/galardones/galardones.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { MapaComponent } from './componentes/mapa/mapa.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
 import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: "galardones", component:GalardonesComponent},
   {path: "videoteca", component:VideotecaComponent},
   {path: "perfil", component:PerfilComponent, canActivate:[UserRouterGuard]},
+  {path: "mapa", component:MapaComponent},
 
   {path: "**", component:HomeComponent}
 ];

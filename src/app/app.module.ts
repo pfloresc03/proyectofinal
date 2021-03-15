@@ -18,6 +18,7 @@ import { GalardonesComponent } from './componentes/galardones/galardones.compone
 import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { PerfilComponent } from './componentes/auth/perfil/perfil.component';
+import { MapaComponent } from './componentes/mapa/mapa.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PerfilComponent } from './componentes/auth/perfil/perfil.component';
     GalardonesComponent,
     VideotecaComponent,
     SafePipe,
-    PerfilComponent
+    PerfilComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,

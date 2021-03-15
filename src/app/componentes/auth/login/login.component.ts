@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.servicioUsuario.isLogged()){
-      this.irHacia.navigate(['/home'])
+      this.irHacia.navigate(['/perfil'])
     }
   }
 
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       error =>{
         console.log(error)
         this.mensaje = error.error.error
+        setTimeout(()=>{this.mensaje=""},2000)
       } 
     )
   }

@@ -1,0 +1,7 @@
+@import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
+
+p{
+    color: black;
+    font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

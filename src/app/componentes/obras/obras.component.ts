@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { obra } from 'src/app/clases/obra';
+import { AdminService } from 'src/app/servicios/admin.service';
 import { ObrasService } from 'src/app/servicios/obras.service';
 import { UserService } from 'src/app/servicios/user.service';
 
@@ -18,7 +19,8 @@ export class ObrasComponent implements OnInit {
     nombre: new FormControl('',[Validators.required]),
     autor: new FormControl('')
   })
-  constructor(private servicioObras:ObrasService, private irHacia:Router, private servicioUsuario:UserService) { }
+  fnAdmin = this.servicioAdmin.isAdmin
+  constructor(private servicioObras:ObrasService, private irHacia:Router, private servicioUsuario:UserService, private servicioAdmin:AdminService) { }
 
   ngOnInit(): void {
     this.obtenerObras()

@@ -31,10 +31,12 @@ export class RegisterComponent implements OnInit {
           this.servicioUsuario.guardarToken(respuesta)
           this.mensaje = respuesta
           this.irHacia.navigate(['/home'])
+          setTimeout(()=>{this.mensaje=""},2000)
         },
         error => {
           console.log(error)
           this.mensaje = error.error.error
+          setTimeout(()=>{this.mensaje=""},2000)
         }
       )
     }
