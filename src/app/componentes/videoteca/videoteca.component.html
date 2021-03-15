@@ -38,12 +38,7 @@
                     <input class="form-control" type="text" placeholder="Titulo" formControlName="titulo">
                     <input class="form-control" type="text" placeholder="Autor" formControlName="autor">
                     <input class="form-control" type="text" placeholder="Enlace" formControlName="enlace">
-                    <button type="submit" *ngIf="!formNuevo.value.id; else editar" [disabled]="formNuevo.invalid" class="btn btn-primary">Insertar video</button>
-                    
-                    <ng-template #editar>
-                        <button type="button" class="btn btn-warning" (click)='editarVideo()' [disabled]="formNuevo.invalid">Editar video</button>
-                        <button type="button" class="btn btn-dark" (click)='formNuevo.reset()'>Cancelar</button>
-                    </ng-template>
+                    <button type="submit" [disabled]="formNuevo.invalid" class="btn btn-primary">Insertar video</button>
                 </form>
                 
             </div>
@@ -70,7 +65,7 @@
         </div>
         <div class="modal-footer">
           
-          <button type="button" class="btn btn-warning" (click)='editarVideo()' [disabled]="formEdit.invalid">Editar video</button>
+          <button type="button" class="btn btn-warning" (click)='editarVideo()' [disabled]="formEdit.invalid" data-dismiss="modal">Editar video</button>
           <button type="button" class="btn btn-dark" data-dismiss="modal" (click)='formEdit.reset()'>Cancelar</button>
         </div>
       </div>

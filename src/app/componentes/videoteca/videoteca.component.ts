@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalManager } from 'ngb-modal';
 import { Videoteca } from 'src/app/clases/videoteca';
 import { UserService } from 'src/app/servicios/user.service';
 import { VideotecaService } from 'src/app/servicios/videoteca.service';
@@ -26,8 +25,7 @@ export class VideotecaComponent implements OnInit {
     autor: new FormControl(''),
     enlace: new FormControl('',[Validators.required])
   })
-  
-  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService, private modal:ModalManager) { }
+  constructor(private servicioVideoteca:VideotecaService, private servicioUsuario:UserService) { }
 
   ngOnInit(): void {
     this.obtenerVideoteca()
@@ -96,7 +94,6 @@ export class VideotecaComponent implements OnInit {
       respuesta =>{
         console.log(respuesta)
         this.obtenerVideoteca()
-        this.modal.close
       },
       error =>{
         console.log(error)
