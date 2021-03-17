@@ -1,4 +1,4 @@
 <app-navegacion></app-navegacion>
-<div class="supercontainer">
-  <router-outlet></router-outlet>
+<div class="supercontainer" [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>

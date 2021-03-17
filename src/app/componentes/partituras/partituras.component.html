@@ -18,7 +18,7 @@
                         <dl>
                             <dt *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>
                                 <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a> &nbsp;
-                                <i class="fas fa-minus-circle" (click)="eliminarPartitura(partitura.id)" *ngIf="fnLogged() && fnAdmin()">Borrar</i>
+                                <i class="fas fa-trash-alt" (click)="eliminarPartitura(partitura.id)" *ngIf="fnAdmin()">Borrar</i>
                                 <hr>
                             </dt>
                         </dl>
@@ -27,7 +27,7 @@
                 
             </div>
             <div class="col-6">  
-                <div class="card" *ngIf="fnLogged() && fnAdmin()">
+                <div class="card" *ngIf="fnAdmin()">
                     <div class="card-header h1 text-center">
                         Subir Partitura
                     </div>

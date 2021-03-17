@@ -18,8 +18,8 @@
                         <dl>
                             <dt *ngFor="let obra of obras">
                                 <p><a [routerLink]="['/partituras',obra.id]">{{obra.nombre}} ({{obra.autor}})</a> &nbsp;
-                                    <i *ngIf="fnLogged() && fnAdmin()" class="fas fa-edit" (click)="obra.id ? formNuevo.patchValue(obra):formNuevo.reset()">Editar</i> &nbsp;
-                                    <i *ngIf="fnLogged() && fnAdmin()" class="fas fa-minus-circle" (click)="eliminarObra(obra.id)">Borrar</i>
+                                    <i *ngIf="fnAdmin()" class="fas fa-edit" (click)="obra.id ? formNuevo.patchValue(obra):formNuevo.reset()">Editar</i> &nbsp;
+                                    <i *ngIf="fnAdmin()" class="fas fa-trash-alt" (click)="eliminarObra(obra.id)">Borrar</i>
                                 </p> 
                                 <hr>                   
                             </dt>
@@ -29,7 +29,7 @@
                 
             </div>
             <div class="col-6">
-                <div class="card" *ngIf="fnLogged() && fnAdmin()">
+                <div class="card" *ngIf="fnAdmin()">
                     <div class="card-header h1 text-center">
                         Añadir obra
                     </div>

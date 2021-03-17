@@ -18,7 +18,7 @@
                     </td>  
                     <td width="250">
                         <p>{{video.titulo}} ({{video.autor}})</p>
-                        <p><i *ngIf="fnLogged() && fnAdmin()" class="fas fa-minus-circle" (click)="eliminarVideo(video.id)">Borrar</i></p>
+                        <p><i *ngIf="fnLogged() && fnAdmin()" class="fas fa-trash-alt" (click)="eliminarVideo(video.id)">Borrar</i></p>
                         <p><i *ngIf="fnLogged() && fnAdmin()" class="fas fa-edit" (click)="video.id ? formEdit.patchValue(video):formEdit.reset()" data-toggle="modal" data-target="#modal">Editar</i></p>
                     </td>
                                  

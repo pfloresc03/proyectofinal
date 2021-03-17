@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { LOCALE_ID, NgModule } from '@angular/core';
 import "@angular/common/locales/global/es"
 
@@ -38,6 +39,7 @@ import { MapaComponent } from './componentes/mapa/mapa.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
