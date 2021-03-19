@@ -3,4 +3,6 @@ export class Partitura {
     archivo?: File
     nombre?: string
     id_obra?: number
+    id_instrumento?: number
+    voz?: number
 }

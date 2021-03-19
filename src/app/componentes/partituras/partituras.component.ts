@@ -2,8 +2,10 @@ import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Instrumentos } from 'src/app/clases/instrumentos';
 import { Partitura } from 'src/app/clases/partitura';
 import { AdminService } from 'src/app/servicios/admin.service';
+import { InstrumentosService } from 'src/app/servicios/instrumentos.service';
 import { PartiturasService } from 'src/app/servicios/partituras.service';
 import { UserService } from 'src/app/servicios/user.service';
 
@@ -15,15 +17,21 @@ import { UserService } from 'src/app/servicios/user.service';
 
 export class PartiturasComponent implements OnInit {
   partitura: Partitura = new Partitura
+  instrumento: Instrumentos = new Instrumentos
+  instrumentos: Instrumentos[]=[]
   archivo: File
   partituras: Partitura[]=[]
   id_obra: number = 0
+  id_inst: number = 1
   fnAdmin = this.servicioAdmin.isAdmin
-  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, private servicioUsuario:UserService, private rutaActiva:ActivatedRoute, private servicioAdmin:AdminService) { }
+  constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, 
+    private servicioUsuario:UserService, private rutaActiva:ActivatedRoute, 
+    private servicioAdmin:AdminService, private servicioInstrumentos:InstrumentosService) { }
 
   ngOnInit(): void {
     this.id_obra = this.rutaActiva.snapshot.params.id_obra
     this.obtenerPartituras()
+    this.obtenerInstrumentos()
   }
 
   fnLogged(): boolean {
@@ -35,6 +43,20 @@ export class PartiturasComponent implements OnInit {
       respuesta => {
         console.log(respuesta)
         this.partituras = respuesta
+      },
+      error => {
+        console.log(error)
+        console.log(error.error.error)
+        
+      }
+    )
+  }
+
+  obtenerInstrumentos(): void{
+    this.servicioInstrumentos.verInstrumentos().subscribe(
+      respuesta => {
+        console.log(respuesta)
+        this.instrumentos = respuesta
       },
       error => {
         console.log(error)

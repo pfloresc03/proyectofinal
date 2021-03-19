@@ -16,8 +16,9 @@
                     </div>
                     <div class="card-body">
                         <dl>
-                            <dt *ngFor="let partitura of partituras"><a href="{{partitura.archivo}}" download>
+                            <dt *ngFor="let partitura of partituras" ><a href="{{partitura.archivo}}" download>
                                 <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a> &nbsp;
+                                <!--<b [(ngModel)]='partitura.id_instrumento' *ngFor="let inst of instrumentos">({{inst.nombre}} {{partitura.voz}})</b> &nbsp;-->
                                 <i class="fas fa-trash-alt" (click)="eliminarPartitura(partitura.id)" *ngIf="fnAdmin()">Borrar</i>
                                 <hr>
                             </dt>
@@ -33,8 +34,15 @@
                     </div>
                     <div class="card-body">
                         <div class="input-group">
-                            <input class="form-control" type="file" (change)='tengoArchivo($event)'>
-                            <button class="btn btn-primary" type="button" (click)="subirArchivo()">Subir Partitura</button>
+                            <form>
+                                <input class="form-control" type="file" (change)='tengoArchivo($event)'> <br>
+                                <select class="form-control">
+                                    <option *ngFor='let rol of instrumentos' [value]='rol.id'>{{rol.nombre}}</option>
+                                </select>
+                                <br>
+                                <button class="btn btn-primary" type="button" (click)="subirArchivo()">Subir Partitura</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
