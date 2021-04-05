@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Partitura } from '../clases/partitura';
 
-const url = 'http://localhost/backendfinal/archivos/'
+const url = 'http://localhost/repositorioFlores/backendFlores/archivos/'
 @Injectable({
   providedIn: 'root'
 })

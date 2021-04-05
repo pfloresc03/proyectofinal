@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const url = 'http://localhost/backendfinal/instrumentos/'
+const url = 'http://localhost/repositorioFlores/backendFlores/instrumentos/'
 @Injectable({
   providedIn: 'root'
 })
