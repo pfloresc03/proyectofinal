@@ -3,4 +3,5 @@ export class Videoteca {
     titulo?: string
     autor: string
     enlace?: string
+    id_concierto?: number
 }

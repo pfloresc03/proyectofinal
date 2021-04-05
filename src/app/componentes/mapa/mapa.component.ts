@@ -20,3 +20,4 @@ export class MapaComponent implements OnInit {
   }
 
 }
+ 

@@ -10,6 +10,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
 import { ObrasComponent } from './componentes/obras/obras.component';
 import { PartiturasComponent } from './componentes/partituras/partituras.component';
+import { SobreMiComponent } from './componentes/sobre-mi/sobre-mi.component';
 import { VideotecaComponent } from './componentes/videoteca/videoteca.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: "videoteca", component:VideotecaComponent},
   {path: "perfil", component:PerfilComponent, canActivate:[UserRouterGuard]},
   {path: "mapa", component:MapaComponent},
+  {path: "sobreMi", component:SobreMiComponent},
 
   {path: "**", component:HomeComponent}
 ];

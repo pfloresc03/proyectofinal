@@ -11,8 +11,8 @@ export class VideotecaService {
 
   constructor(private http:HttpClient) { }
 
-  verVideoteca(): Observable<any>{
-    return this.http.get(url)
+  verVideoteca(id_concierto:number): Observable<any>{
+    return this.http.get(url + id_concierto)
   }
 
   insertarVideo(video:Videoteca): Observable<any>{

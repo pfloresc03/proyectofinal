@@ -10,11 +10,11 @@ export class InstrumentosService {
 
   constructor(private http:HttpClient) { }
 
-  obtenerInstrumento(id:number): Observable<any>{
-    return this.http.get(url+id)
+  obtenerPartituras(id_obra:number): Observable<any>{
+    return this.http.get(url + id_obra)
   }
 
   verInstrumentos(): Observable<any>{
-    return this.http.get(url)
+    return this.http.get(url + "ver")
   }
 }

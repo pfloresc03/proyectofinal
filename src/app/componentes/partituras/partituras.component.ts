@@ -1,6 +1,6 @@
 import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Instrumentos } from 'src/app/clases/instrumentos';
 import { Partitura } from 'src/app/clases/partitura';
@@ -20,9 +20,18 @@ export class PartiturasComponent implements OnInit {
   instrumento: Instrumentos = new Instrumentos
   instrumentos: Instrumentos[]=[]
   archivo: File
-  partituras: Partitura[]=[]
+  partituras: any
   id_obra: number = 0
-  id_inst: number = 1
+  voces: number[]=[1,2,3,4]
+  id_instrumento: number = 1
+  id_voz: number = 1
+  mensaje: string
+  id_partitura: number
+  formNuevo: FormGroup = new FormGroup({
+    id_partitura: new FormControl(),
+    id_instrumento: new FormControl(),
+    id_voz: new FormControl()
+  })
   fnAdmin = this.servicioAdmin.isAdmin
   constructor(private fb:FormBuilder, private servicioPartitura:PartiturasService, 
     private servicioUsuario:UserService, private rutaActiva:ActivatedRoute, 
@@ -39,7 +48,7 @@ export class PartiturasComponent implements OnInit {
   }
 
   obtenerPartituras(): void{
-    this.servicioPartitura.verPartituras(this.id_obra).subscribe(
+    this.servicioInstrumentos.obtenerPartituras(this.id_obra).subscribe(
       respuesta => {
         console.log(respuesta)
         this.partituras = respuesta
@@ -72,10 +81,10 @@ export class PartiturasComponent implements OnInit {
     }
   }
 
-  subirArchivo(): void{
+  subirArchivo(id_inst, voz): void{
     const formData = new FormData()
     formData.append('partitura', this.archivo)
-    this.servicioPartitura.subirPartitura(formData, this.id_obra).subscribe(
+    this.servicioPartitura.subirPartitura(formData, this.id_obra, id_inst, voz).subscribe(
       respuesta => {
         console.log(respuesta)
         this.obtenerPartituras()
@@ -83,6 +92,28 @@ export class PartiturasComponent implements OnInit {
       error => {
         console.log(error)
         console.log(error.error.error)
+        this.mensaje = error.error.error;
+        
+      }
+    )
+  }
+
+  editarPartitura(): void{
+    this.formNuevo.value.id_partitura = this.id_partitura
+    this.formNuevo.value.id_instrumento = this.id_instrumento
+    this.formNuevo.value.id_voz = this.id_voz
+    this.servicioPartitura.editarPartitura(this.formNuevo.value).subscribe(
+      respuesta => {
+        console.log(respuesta)
+        this.obtenerPartituras()
+        this.id_partitura = null
+        this.id_instrumento = 1
+        this.id_voz = 1
+        this.mensaje = respuesta
+        setTimeout(()=>{this.mensaje=""},2000)
+      }, error => {
+        console.log(error)
+        this.mensaje = error.error.error;
       }
     )
   }

@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    <br>
     <div class="card text-center">
-        <div class="card-header h3 text-center">
+        <div class="card-header h1 text-center">
             Tu perfil <i class="fa fa-user-circle fa-spin" aria-hidden="true"></i>
         </div>
         <div class="card-body">
@@ -20,7 +21,7 @@
         </div>
     </div>
     <div class="card text-center" *ngIf="mostrarEditar">
-        <div class="card-header h5 text-center">Editar tu perfil</div>
+        <div class="card-header h4 text-center">Editar tu perfil</div>
         <div class="card-body">
             <form [formGroup]="formPerfil" (submit)="editarPerfil()">
                 <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre" ><br>
@@ -35,7 +36,7 @@
         </div>
     </div>
     <div class="card text-center" *ngIf="mostrarEliminar">
-        <div class="card-header h5 text-center">Para eliminar tu perfil introduce tu e-mail</div>
+        <div class="card-header h4 text-center">Para eliminar tu perfil introduce tu e-mail</div>
         <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="borrarEmail" placeholder="E-mail"><br>
             

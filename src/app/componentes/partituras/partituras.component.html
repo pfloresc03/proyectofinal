@@ -9,6 +9,7 @@
     <div class="container">
         <br>
         <div class="row">
+            <div class="col-3" *ngIf="!fnAdmin()"></div>
             <div class="col-6">
                 <div class="card">
                     <div class="card-header h1 text-center">
@@ -18,8 +19,9 @@
                         <dl>
                             <dt *ngFor="let partitura of partituras" ><a href="{{partitura.archivo}}" download>
                                 <i class="fa fa-file-pdf"></i>{{partitura.nombre}}</a> &nbsp;
-                                <!--<b [(ngModel)]='partitura.id_instrumento' *ngFor="let inst of instrumentos">({{inst.nombre}} {{partitura.voz}})</b> &nbsp;-->
-                                <i class="fas fa-trash-alt" (click)="eliminarPartitura(partitura.id)" *ngIf="fnAdmin()">Borrar</i>
+                                <b>({{partitura.nombreInst}} {{partitura.voz}})</b> &nbsp;
+                                <i *ngIf="fnAdmin()" class="fas fa-edit" (click)="id_partitura=partitura.id" (click)="id_instrumento=partitura.id_instrumento" (click)="id_voz=partitura.voz">Editar</i> &nbsp;
+                                <i *ngIf="fnAdmin()" class="fas fa-trash-alt" (click)="eliminarPartitura(partitura.id)">Borrar</i>
                                 <hr>
                             </dt>
                         </dl>
@@ -27,20 +29,33 @@
                 </div>
                 
             </div>
-            <div class="col-6">  
-                <div class="card" *ngIf="fnAdmin()">
+            <div class="col-3" *ngIf="!fnAdmin()"></div>
+            <div class="col-6" *ngIf="fnAdmin()">  
+                <div class="card" >
                     <div class="card-header h1 text-center">
                         Subir Partitura
                     </div>
                     <div class="card-body">
                         <div class="input-group">
                             <form>
-                                <input class="form-control" type="file" (change)='tengoArchivo($event)'> <br>
-                                <select class="form-control">
-                                    <option *ngFor='let rol of instrumentos' [value]='rol.id'>{{rol.nombre}}</option>
+                                <p *ngIf="id_partitura" class="alert">Solo se pueden modificar el instrumento y la voz</p>
+                                <input *ngIf="!id_partitura" class="form-control" type="file" (change)='tengoArchivo($event)'>
+                                Instrumento:
+                                <select class="form-control" style="height:50px" [(ngModel)]="id_instrumento" name="inst" >
+                                    <option *ngFor='let inst of instrumentos' [value]='inst.id'>{{inst.nombreInst}}</option>
+                                </select>
+                                Voz:
+                                <select class="form-control" style="height:50px" [(ngModel)]="id_voz" name="voces" >    
+                                    <option *ngFor='let voz of voces' [value]='voz'>{{voz}}</option>
                                 </select>
                                 <br>
-                                <button class="btn btn-primary" type="button" (click)="subirArchivo()">Subir Partitura</button>
+                                <p *ngIf="mensaje" class="alert"><b>{{mensaje}}</b></p>
+                                <button class="btn btn-primary" *ngIf="!id_partitura; else editar" type="button" (click)="subirArchivo(id_instrumento,id_voz)">Subir Partitura</button>
+                                
+                                <ng-template #editar>
+                                    <button type="button" class="btn btn-warning" (click)='editarPartitura()'>Editar partitura</button>
+                                    <button type="button" class="btn btn-dark" (click)='id_instrumento=1' (click)="id_voz=1" (click)='id_partitura=""'>Cancelar</button>
+                                </ng-template>
                             </form>
                             
                         </div>

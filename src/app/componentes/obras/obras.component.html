@@ -9,6 +9,7 @@
     <div class="container">
         <br>
         <div class="row">
+            <div class="col-3" *ngIf="!fnAdmin()"></div>
             <div class="col-6">
                 <div class="card">
                     <div class="card-header h1 text-center">
@@ -28,8 +29,9 @@
                 </div>
                 
             </div>
-            <div class="col-6">
-                <div class="card" *ngIf="fnAdmin()">
+            <div class="col-3" *ngIf="!fnAdmin()"></div>
+            <div class="col-6" *ngIf="fnAdmin()">
+                <div class="card">
                     <div class="card-header h1 text-center">
                         Añadir obra
                     </div>
@@ -40,7 +42,7 @@
                             <button type="submit" *ngIf="!formNuevo.value.id; else editar" [disabled]="formNuevo.invalid" class="btn btn-primary">Crear obra</button>
                             
                             <ng-template #editar>
-                                <button type="button" class="btn btn-warning" (click)='editarObra()' [disabled]="formNuevo.invalid">Editar video</button>
+                                <button type="button" class="btn btn-warning" (click)='editarObra()' [disabled]="formNuevo.invalid">Editar obra</button>
                                 <button type="button" class="btn btn-dark" (click)='formNuevo.reset()'>Cancelar</button>
                             </ng-template>
                         </form>

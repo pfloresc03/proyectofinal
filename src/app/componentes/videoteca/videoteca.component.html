@@ -6,11 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    <br>
     <div class="card">
         <div class="card-header h1">
             Videoteca
         </div>
         <div class="card-body">
+            <select class="form-control" style="height:50px" name="con" (change)="obtenerVideos($event)" >
+                <option *ngFor='let con of conciertos' [value]='con.id'>{{con.nombre}} {{con.fecha}} </option>
+            </select>
+            <hr>
             <table>
                 <tbody *ngFor="let video of videoteca" id="videos">                  
                     <td width="270">
@@ -30,6 +35,18 @@
     <div *ngIf="fnLogged() && fnAdmin()">
         <div class="card">
             <div class="card-header h2">
+                Nuevo Concierto
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formConcierto" (ngSubmit)="crearConcierto()">
+                    <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+                    <input class="form-control" type="date" formControlName="fecha">
+                    <button type="submit" [disabled]="formConcierto.invalid" class="btn btn-primary">Crear concierto</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header h2">
                 Subir Video
             </div>
             <div class="card-body">
@@ -38,6 +55,9 @@
                     <input class="form-control" type="text" placeholder="Titulo" formControlName="titulo">
                     <input class="form-control" type="text" placeholder="Autor" formControlName="autor">
                     <input class="form-control" type="text" placeholder="Enlace" formControlName="enlace">
+                    <select class="form-control" style="height:50px" name="con" formControlName="id_concierto" [(ngModel)]="id_concierto">
+                        <option *ngFor='let con of conciertos' [value]='con.id'>{{con.nombre}} {{con.fecha}} </option>
+                    </select>
                     <button type="submit" [disabled]="formNuevo.invalid" class="btn btn-primary">Insertar video</button>
                 </form>
                 
@@ -60,7 +80,9 @@
                 <input class="form-control" type="text" placeholder="Titulo" formControlName="titulo">
                 <input class="form-control" type="text" placeholder="Autor" formControlName="autor">
                 <input class="form-control" type="text" placeholder="Enlace" formControlName="enlace">
-
+                <select class="form-control" style="height:50px" name="con" formControlName="id_concierto" [(ngModel)]="id_concierto">
+                    <option *ngFor='let con of conciertos' [value]='con.id'>{{con.nombre}} {{con.fecha}} </option>
+                </select>
             </form>
         </div>
         <div class="modal-footer">
